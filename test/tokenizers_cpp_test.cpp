@@ -13,7 +13,7 @@
 //------------------------------------------------------------------------
 
 #include "libmusictok/utility_functions.h"
-#include "testing_utilities.hpp"
+#include "libmusictok/testing/testing_utilities.h"
 #include <filesystem>
 #include <gtest/gtest.h>
 
@@ -24,6 +24,8 @@
 
 //------------------------------------------------------------------------
 namespace libmusictokTest {
+
+const std::string resourcesPath = RESOURCES_DIRECTORY;
 
 //------------------------------------------------------------------------
 class TokenizersCppTest : public ::testing::Test

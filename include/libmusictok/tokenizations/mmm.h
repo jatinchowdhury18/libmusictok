@@ -21,7 +21,7 @@
 namespace libmusictok {
 
 //------------------------------------------------------------------------
-class MMM final : public MusicTokenizer
+class MMM : public MusicTokenizer
 {
 public:
     MMM(const std::filesystem::path &tokenizerFile, bool verbose = true);
@@ -51,7 +51,7 @@ public:
 
     void loadNewConfigFile(const std::filesystem::path &tokenizerConfigFile) override;
 
-private:
+protected:
     void loadFromJson(const std::filesystem::path &tokenizerFile) override;
 
     void tweakConfigBeforeCreatingVoc() override;

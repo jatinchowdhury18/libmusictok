@@ -21,7 +21,7 @@
 namespace libmusictok {
 
 //------------------------------------------------------------------------
-class Structured final : public MusicTokenizer
+class Structured : public MusicTokenizer
 {
 public:
     Structured(const std::filesystem::path &tokenizerFile, bool v);
@@ -30,7 +30,7 @@ public:
 
     ~Structured() = default;
 
-private:
+protected:
     void tweakConfigBeforeCreatingVoc() override;
 
     std::variant<std::vector<std::vector<std::string>>, std::vector<std::string>> createBaseVocabulary() override;

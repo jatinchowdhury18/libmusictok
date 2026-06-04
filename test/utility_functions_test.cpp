@@ -17,11 +17,13 @@
 //------------------------------------------------------------------------
 
 #include "libmusictok/utility_functions.h"
-#include "testing_utilities.hpp"
+#include "libmusictok/testing/testing_utilities.h"
 
 //------------------------------------------------------------------------
 using namespace libmusictokUtils;
 namespace libmusictokTest {
+
+const std::string resourcesPath = RESOURCES_DIRECTORY;
 
 //------------------------------------------------------------------------
 class UtilityFunctionsTest : public ::testing::Test

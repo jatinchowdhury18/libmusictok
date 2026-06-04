@@ -20,7 +20,7 @@
 namespace libmusictok {
 
 //------------------------------------------------------------------------
-class CPWord final : public MusicTokenizer
+class CPWord : public MusicTokenizer
 {
 public:
     CPWord(const std::filesystem::path &tokenizerFile, bool v);
@@ -29,7 +29,7 @@ public:
 
     ~CPWord() = default;
 
-private:
+protected:
     void tweakConfigBeforeCreatingVoc() override;
 
     std::variant<std::vector<std::vector<std::string>>, std::vector<std::string>> createBaseVocabulary() override;

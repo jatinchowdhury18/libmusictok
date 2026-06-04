@@ -210,4 +210,15 @@ void TokSequence::setTicksBeats(std::vector<int> ticksBeats_)
 }
 
 //------------------------------------------------------------------------
+const std::vector<int>& TokSequence::getTicksBars() const
+{
+	return ticksBars;
+}
+//------------------------------------------------------------------------
+const std::vector<int>& TokSequence::getTicksBeats() const
+{
+	return ticksBeats;
+}
+
+//------------------------------------------------------------------------
 } // namespace libmusictok

@@ -16,7 +16,7 @@
 #include "libmusictok/tokenizations/tsd.h"
 #include "libmusictok/tokenizer_config.h"
 #include "libmusictok/utility_functions.h"
-#include "testing_utilities.hpp"
+#include "libmusictok/testing/testing_utilities.h"
 
 //------------------------------------------------------------------------
 
@@ -29,6 +29,9 @@
 //------------------------------------------------------------------------
 using namespace libmusictok;
 namespace libmusictokTest {
+
+const std::string resourcesPath = RESOURCES_DIRECTORY;
+
 //------------------------------------------------------------------------
 class TokSequenceTest : public ::testing::Test
 {
@@ -355,7 +358,7 @@ TEST_P(TokSequenceParameterisedTest, splitTokseqPerBarsBeats)
 }
 
 // Instantiate test suite with list of MIDI files
-INSTANTIATE_TEST_SUITE_P(MidiPaths, TokSequenceParameterisedTest, ::testing::ValuesIn(getMidiPathsMultitrack()),
+INSTANTIATE_TEST_SUITE_P(MidiPaths, TokSequenceParameterisedTest, ::testing::ValuesIn(getMidiPathsMultitrack(resourcesPath)),
                          [](const ::testing::TestParamInfo<TokSequenceParameterisedTest::ParamType> &info) {
                              return midiFileNameFormatter(info.param.filename());
                          });

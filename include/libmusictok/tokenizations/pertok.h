@@ -21,7 +21,7 @@
 namespace libmusictok {
 
 //------------------------------------------------------------------------
-class PerTok final : public MusicTokenizer
+class PerTok : public MusicTokenizer
 {
 public:
     PerTok(const std::filesystem::path &tokenizerFile, bool v);
@@ -30,7 +30,7 @@ public:
 
     ~PerTok() = default;
 
-private:
+protected:
     void postConstructorChecks();
 
     void tweakConfigBeforeCreatingVoc() override;

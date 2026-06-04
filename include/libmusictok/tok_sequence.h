@@ -814,6 +814,12 @@ public:
     ///< Sets the ticks for the beat onsets
     void setTicksBeats(std::vector<int> ticksBeats_);
 
+   	///< Gets the ticks for the bar onsets
+	const std::vector<int>& getTicksBars() const;
+
+	///< Gets the ticks for the beat onsets
+	const std::vector<int>& getTicksBeats() const;
+
     bool operator==(const TokSequence &other) const;
     TokSequence operator+(const TokSequence &other) const;
     TokSequence &operator+=(const TokSequence &other);
