@@ -52,10 +52,22 @@ add_subdirectory(3rdparty/pyvec EXCLUDE_FROM_ALL)
 
 include_directories(include)
 include_directories(3rdparty/pdqsort)
-include_directories(3rdparty/zpp_bits)
+# include_directories(3rdparty/zpp_bits)
 include_directories(3rdparty)
 
-file(GLOB_RECURSE symusic_src src/*.cpp src/io/*.cpp)
+# file(GLOB_RECURSE symusic_src src/*.cpp src/io/*.cpp)
+set(symusic_src
+  "src/conversion.cpp"
+  "src/event.cpp"
+  "src/pianoroll.cpp"
+  "src/repr.cpp"
+  "src/score.cpp"
+  "src/synth.cpp"
+  "src/track.cpp"
+  "src/utils.cpp"
+  "src/io/common.cpp"
+  "src/io/midi.cpp"
+)
 
 foreach(src_file ${symusic_src})
   message(STATUS "symusic_src: ${src_file}")
@@ -69,7 +81,7 @@ target_link_libraries(symusic pyvec)
 
 target_include_directories(symusic PUBLIC include)
 target_include_directories(symusic PUBLIC 3rdparty/pdqsort)
-target_include_directories(symusic PUBLIC 3rdparty/zpp_bits)
+# target_include_directories(symusic PUBLIC 3rdparty/zpp_bits)
 target_include_directories(symusic PUBLIC 3rdparty)
 
 if(SYMUSIC_FAST_BUILD)
