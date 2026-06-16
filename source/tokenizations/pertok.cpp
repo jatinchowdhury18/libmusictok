@@ -55,6 +55,11 @@ void PerTok::postConstructorChecks()
     {
         microtimingTickValues = createMicrotimingTickValues();
     }
+
+    if (usePositionToks && positionLocations.empty())
+    {
+        positionLocations = createPositionTokLocations();
+    }
 }
 
 //------------------------------------------------------------------------
@@ -642,9 +647,12 @@ std::vector<int> PerTok::createMicrotimingTickValues() const
     std::vector<int> out;
     out.reserve(mtBins + 1);
 
+    // Match numpy.linspace(..., dtype=np.intc) semantics used by miditok PerTok.
+    // Numpy rounds toward -inf for integer dtype conversion.
     for (size_t i = 0; i < mtVals.size(); i++)
     {
-        out.push_back(static_cast<int>(std::round(mtVals.at(i))));
+        // out.push_back(static_cast<int>(std::round(mtVals.at(i)))); // original
+        out.push_back(static_cast<int>(std::floor(mtVals.at(i)))); // match Numpy
     }
 
     return out;
