@@ -52,9 +52,16 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "iOS")
   find_library(SECURITY_LIB Security)
   list(APPEND TOKENIZERS_C_LINK_LIBS ${FOUNDATION_LIB} ${SECURITY_LIB})
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-  if (CMAKE_SYSTEM_PROCESSOR STREQUAL "arm64")
+  # Decide Rust target from CMAKE_OSX_ARCHITECTURES when available
+  if (CMAKE_OSX_ARCHITECTURES MATCHES "x86_64")
+    set(TOKENIZERS_CPP_CARGO_TARGET x86_64-apple-darwin)
+  elseif (CMAKE_OSX_ARCHITECTURES MATCHES "arm64;?") # arm64 only
+    set(TOKENIZERS_CPP_CARGO_TARGET aarch64-apple-darwin)
+  elseif (CMAKE_SYSTEM_PROCESSOR STREQUAL "arm64")
+    # Fallback: Apple Silicon host, default to arm64 if no explicit arch
     set(TOKENIZERS_CPP_CARGO_TARGET aarch64-apple-darwin)
   endif()
+
   if (CMAKE_OSX_DEPLOYMENT_TARGET)
     set(CARGO_EXTRA_ENVS
       MACOSX_DEPLOYMENT_TARGET=${CMAKE_OSX_DEPLOYMENT_TARGET}
