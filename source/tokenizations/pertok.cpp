@@ -296,7 +296,7 @@ ScoreType PerTok::tokensToScore(std::variant<TokSequence, TokSequenceVec> tokens
                 currentTick += convertDurationsToTicks(tokVal);
 
             else if (tokType == "Position")
-                currentTick += currBarTick + std::stoi(tokVal);
+                currentTick = currBarTick + std::stoi(tokVal);
 
             else if (tokType == "Pitch" || tokType == "PitchDrum" || tokType == "PitchIntervalTime" ||
                      tokType == "PitchIntervalChord")
