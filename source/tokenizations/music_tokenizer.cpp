@@ -443,6 +443,25 @@ void MusicTokenizer::loadFromJson(const std::filesystem::path &tokenizerFile)
 }
 
 //------------------------------------------------------------------------
+void MusicTokenizer::loadFromJsonString(std::string_view jsonStr)
+{
+    const nlohmann::ordered_json jsonTokenizer = nlohmann::ordered_json::parse(jsonStr);
+
+    if (jsonTokenizer.contains("config"))
+    {
+        config = TokenizerConfig::fromDict(jsonTokenizer["config"]);
+    }
+    else
+    {
+        config = TokenizerConfig::fromDict(jsonTokenizer);
+    }
+    tweakConfigBeforeCreatingVoc();
+
+    tic = std::make_unique<TokenIdConverter>();
+    tic->initialize(jsonTokenizer, &config, verbose);
+}
+
+//------------------------------------------------------------------------
 void MusicTokenizer::updateTokenizer()
 {
     // Determines whether the tokenizer will produce a single sequence of tokens for

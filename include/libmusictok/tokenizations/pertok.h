@@ -25,7 +25,7 @@ class PerTok final : public MusicTokenizer
 {
 public:
     PerTok(const std::filesystem::path &tokenizerFile, bool v);
-
+    PerTok(std::string_view jsonStr, bool v);
     PerTok(TokenizerConfig &tokenizerConfig);
 
     ~PerTok() = default;

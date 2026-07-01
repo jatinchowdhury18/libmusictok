@@ -271,6 +271,7 @@ public:
 
 protected:
     virtual void loadFromJson(const std::filesystem::path &tokenizerFile);
+    void loadFromJsonString(std::string_view jsonStr);
 
     void addNoteTokensToVocabList(std::vector<std::string> &vocab) const;
 

@@ -29,6 +29,16 @@ PerTok::PerTok(const std::filesystem::path &tokenizerFile, bool v)
 }
 
 //------------------------------------------------------------------------
+PerTok::PerTok(std::string_view jsonStr, bool v)
+    : MusicTokenizer(TokenizerType::kPerTok, v)
+{
+    loadFromJsonString(jsonStr);
+    updateTokenizer();
+
+    postConstructorChecks();
+}
+
+//------------------------------------------------------------------------
 PerTok::PerTok(TokenizerConfig &tokConfig)
     : MusicTokenizer(TokenizerType::kPerTok, false)
 {
